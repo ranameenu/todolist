@@ -8,20 +8,34 @@ class Todos extends Component {
     todos: [
       {
         id: 1,
-        todo: "Take out the trash",
+        title: "Take out the trash",
         completed: false,
       },
       {
         id: 2,
-        todo: "Go to lunch",
+        title: "Go to lunch",
         completed: false,
       },
       {
         id: 3,
-        todo: "Call to boss",
+        title: "Call to boss",
         completed: false,
       },
     ],
+  };
+
+  addTodo = (text) => {
+    let copyTodos = this.state.todos;
+
+    const newTodo = {
+      id: "",
+      title: text,
+      completed: false,
+    };
+
+    copyTodos = [...copyTodos, newTodo];
+
+    this.setState({ todos: copyTodos });
   };
 
   render() {
@@ -29,7 +43,7 @@ class Todos extends Component {
       <div>
         <h1 className="text-center mb-4">Todo List</h1>
 
-        <AddTodo />
+        <AddTodo addTodo={this.addTodo} />
 
         <div className="card mt-4">
           <div className="card-body">

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 
 class TodoItem extends Component {
   render() {
-    const { id, todo, completed } = this.props.values;
+    const { id, title, completed } = this.props.values;
 
     return (
       <li className="list-group-item">
-        {todo}
+        {title}
         <button className="btn btn-danger btn-sm ml-2 float-right">
           delete
         </button>
