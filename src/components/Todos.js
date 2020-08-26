@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { v4 } from "uuid";
+
 import AddTodo from "./AddTodo";
 import SearchTodos from "./SearchTodos";
 import TodoItem from "./TodoItem";
@@ -28,12 +30,20 @@ class Todos extends Component {
     let copyTodos = this.state.todos;
 
     const newTodo = {
-      id: "",
+      id: v4(),
       title: text,
       completed: false,
     };
 
     copyTodos = [...copyTodos, newTodo];
+
+    this.setState({ todos: copyTodos });
+  };
+
+  deleteTodo = (id) => {
+    let copyTodos = this.state.todos;
+
+    copyTodos = copyTodos.filter((val) => val.id !== id);
 
     this.setState({ todos: copyTodos });
   };
@@ -53,7 +63,11 @@ class Todos extends Component {
 
             <ul className="list-group mt-5">
               {this.state.todos.map((todo) => (
-                <TodoItem key={todo.id} values={todo} />
+                <TodoItem
+                  key={todo.id}
+                  values={todo}
+                  deleteTodo={this.deleteTodo}
+                />
               ))}
             </ul>
           </div>
