@@ -9,20 +9,33 @@ class TodoItem extends Component {
     // this.props.deleteTodo(this.props.values.id)
   };
 
+  isCompleted = () => {
+    const { id } = this.props.values;
+
+    this.props.completeTodo(id);
+  };
+
   render() {
     const { title, completed } = this.props.values;
 
     return (
       <li className="list-group-item">
-        {title}
+        <span className={`${completed === true ? "completed" : ""}`}>
+          {title}
+        </span>
         <button
           className="btn btn-danger btn-sm ml-2 float-right"
           onClick={this.onClick}
         >
           delete
         </button>
-        <button className="btn btn-secondary btn-sm float-right">
-          complete
+        <button
+          className={`btn btn-sm float-right ${
+            completed === true ? "btn-success" : "btn-secondary"
+          }`}
+          onClick={this.isCompleted}
+        >
+          {completed === true ? "completed" : "complete"}
         </button>
       </li>
     );

@@ -40,6 +40,19 @@ class Todos extends Component {
     this.setState({ todos: copyTodos });
   };
 
+  completeTodo = (id) => {
+    let copyTodos = this.state.todos;
+
+    copyTodos = copyTodos.map((val) => {
+      if (val.id === id) {
+        val.completed = true; //!val.completed;
+      }
+      return val;
+    });
+
+    this.setState({ todos: copyTodos });
+  };
+
   deleteTodo = (id) => {
     let copyTodos = this.state.todos;
 
@@ -67,6 +80,7 @@ class Todos extends Component {
                   key={todo.id}
                   values={todo}
                   deleteTodo={this.deleteTodo}
+                  completeTodo={this.completeTodo}
                 />
               ))}
             </ul>
